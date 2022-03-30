@@ -7,7 +7,7 @@ function parseData(text, url) {
     let subtitle = info[1].querySelector('a').textContent;
     let state = info[2].querySelector('a').textContent;
     let summary = doc.querySelector('.ar_list_coc').querySelector('.ar_list_coc').querySelector('i').textContent;
-    let comic_list = doc.querySelectorAll('.ar_rlos_bor').querySelectorAll('li');
+    let comic_list = doc.querySelector('.ar_rlos_bor').querySelectorAll('li');
     showToast(`${comic_list}`);
     for (let list of comic_list) {
         results.push({

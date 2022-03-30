@@ -142,6 +142,7 @@ class SearchController extends Controller {
         let items = [];
 
         let list = doc.querySelectorAll('.ar_list_co').querySelectorAll('dl');
+        showToast(`${list}`);
         for (let node of list) {
             items.push({
                 title: node.querySelector('h1').querySelector('a').textContent,

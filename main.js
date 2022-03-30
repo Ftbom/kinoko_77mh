@@ -69,7 +69,7 @@ class MainController extends Controller {
                 console.log(`id: ${this.id} ${this.data.hasMore}`)
             });
         } catch (e) {
-            showToast(`${e}\n${e.stack}`);
+            showToast('没有更多了');
             this.data.hasMore = false;
             this.setState(()=>{
                 this.data.loading = false;
@@ -143,13 +143,13 @@ class MainController extends Controller {
         for (let item of doc.querySelector('#ConmmandComicTab1').querySelectorAll('a')) {
             categroy_title.push(item.textContent);
         }
-        for (let cat_title of categroy_title) {
+        for (let i = 0; i < 3; i++) {
             results.push({
                 header: true,
-                title: cat_title,
+                title: categroy_title[i],
                 icon: ''
             });
-            let comic_items = doc.querySelector(`.ConmmandComicTab1_Content${categroy_title.indexOf(cat_title)}`).querySelectorAll('li');
+            let comic_items = doc.querySelector(`#ConmmandComicTab1_Content${i}`).querySelectorAll('li');
             for (let item of comic_items) {
                 results.push({
                     title: item.querySelector('i').textContent,

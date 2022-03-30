@@ -1,17 +1,18 @@
+const baseURL = 'https://www.77mh.in';
+
 function parseData(text, url) {
     const doc = HTMLParser.parse(text);
     let results = [];
-    let subtitle = doc.querySelector('.pub-duration').querySelector('a').textContent;
-    let state = doc.querySelector('.comic-pub-state').textContent;
-    let summary = doc.querySelector('.comic_story').textContent;
-    let comic_list = doc.querySelectorAll('.links-of-books');
+    let info = doc.querySelector('.ar_list_coc').querySelector('.ar_list_coc').querySelectorAll('li');
+    let subtitle = info[1].querySelector('a').textContent;
+    let state = info[2].querySelector('a').textContent;
+    let summary = doc.querySelector('.ar_list_coc').querySelector('.ar_list_coc').querySelector('i').textContent;
+    let comic_list = doc.querySelectorAll('.ar_rlos_bor').querySelectorAll('li');
     for (let list of comic_list) {
-        for (let info of list.querySelectorAll('a')) {
-            results.push({
-                link: info.getAttribute('href'),
-                title: info.textContent,
-            });
-        }
+        results.push({
+            link: baseURL + list.querySelector('a').getAttribute('href'),
+            title: list.querySelector('a').textContent,
+        });
     }
     return {
         subtitle: subtitle,

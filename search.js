@@ -1,4 +1,4 @@
-const Search_baseURL = 'https://www.maofly.com/search.html?q={0}&page={1}';
+const Search_baseURL = 'https://so.77mh.in/k.php?k={0}&p={1}';
 
 class SearchController extends Controller {
 
@@ -141,11 +141,11 @@ class SearchController extends Controller {
         
         let items = [];
 
-        let list = doc.querySelectorAll('.comicbook-index');
+        let list = doc.querySelectorAll('.ar_list_co').querySelectorAll('dl');
         for (let node of list) {
             items.push({
-                title: node.querySelector('a').getAttribute('title'),
-                subtitle: node.querySelector('.comic-author').querySelector('a').textContent,
+                title: node.querySelector('h1').querySelector('a').textContent,
+                subtitle: node.querySelector('.author').querySelectorAll('a')[1].textContent,
                 link: node.querySelector('a').getAttribute('href'),
                 picture: node.querySelector('img').getAttribute('src'),
             });

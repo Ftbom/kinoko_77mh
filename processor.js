@@ -26,25 +26,22 @@ class MangaProcesser extends Processor {
             let doc = HTMLParser.parse(text);
             let data = [];
             let script = doc.querySelectorAll('script:not([str])')[0].textContent;
-            let start = script.search('maxPage');
-            let end = script.search('msg');
-            let img_urls = script.substring(start + 8, end - 1).split('|');
-            start = script.search('jpg');
-            end = script.search('var');
+            let script_split = script.split('\'');
+            let data_split = script_split[script_split.length - 4].split('|');
+            let img_data = data_split.slice(data_split.indexOf('maxPage') + 1,data_split.indexOf('msg'));
             let url_part = '';
-            if (end - start > 10) {
-                let url_parts = script.substring(start + 4, end - 1).split('|');
-                url_part = url_parts[1] + '/' + url_parts[0] + '/';
+            if (data_split[0] == 'jpg') {
+                url_part = data_split[2] + '/' + data_split[1] + '/';
             } else {
-                url_part = script.substring(start - 7,start - 1) + '/' + script.substring(start + 4, end - 1) + '/';
+                url_part = data_split[2] + '/' + data_split[0] + '/';
             }
             let cid = doc.querySelector('#backTitle').querySelector('a').getAttribute('href');
             res = await fetch(`https://css.gdbyhtl.net:5443/img_v1/cn_svr.asp?z=gn&s=61&cid=${cid.substring(8, cid.length - 5)}&coid=${url.substring(27, url.length - 5)}`);
             text = await res.text();
             let img_url_front = text.substring(49, text.length - 20);
-            for (let img_url of img_urls) {
+            for (let img_url of img_data) {
                 data.push({
-                    url: img_url_front + url_part + img_url + 'jpg',
+                    url: img_url_front + url_part + img_url + '.jpg',
                     headers: {
                         Referer: url
                     }

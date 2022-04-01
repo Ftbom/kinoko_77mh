@@ -157,6 +157,9 @@ class MainController extends Controller {
                     subtitle: '',
                     link: baseURL + item.querySelector('a').getAttribute('href'),
                     picture: item.querySelector('img').getAttribute('src'),
+                    pictureHeaders: {
+                        Referer: baseURL
+                    },
                 });
             }
         }

@@ -78,6 +78,63 @@
                                     </button>
                                 </if>
                                 <expanded />
+                                <menu-button onSelected="onChangeServer">
+                                    <attr:icon>
+                                        <icon color="color(primary)">dns_rounded</icon>
+                                    </attr:icon>
+                                    <attr:items>
+                                        <menu-item value="0">
+                                            <text>
+                                                <view width="36">
+                                                    <if candidate="equal(0, $server)">
+                                                        <icon color="color(primary)">check</icon>
+                                                    </if>
+                                                </view>
+                                                <span text="服务器1"/>
+                                            </text>
+                                        </menu-item>
+                                        <menu-item value="1">
+                                            <text>
+                                                <view width="36">
+                                                    <if candidate="equal(1, $server)">
+                                                        <icon color="color(primary)">check</icon>
+                                                    </if>
+                                                </view>
+                                                <span text="服务器2"/>
+                                            </text>
+                                        </menu-item>
+                                        <menu-item value="2">
+                                            <text>
+                                                <view width="36">
+                                                    <if candidate="equal(2, $server)">
+                                                        <icon color="color(primary)">check</icon>
+                                                    </if>
+                                                </view>
+                                                <span text="服务器3"/>
+                                            </text>
+                                        </menu-item>
+                                        <menu-item value="3">
+                                            <text>
+                                                <view width="36">
+                                                    <if candidate="equal(3, $server)">
+                                                        <icon color="color(primary)">check</icon>
+                                                    </if>
+                                                </view>
+                                                <span text="服务器4"/>
+                                            </text>
+                                        </menu-item>
+                                        <menu-item value="4">
+                                            <text>
+                                                <view width="36">
+                                                    <if candidate="equal(4, $server)">
+                                                        <icon color="color(primary)">check</icon>
+                                                    </if>
+                                                </view>
+                                                <span text="服务器5"/>
+                                            </text>
+                                        </menu-item>
+                                    </attr:items>
+                                </menu-button>
                                 <menu-button onSelected="onOrderSelected">
                                     <attr:icon>
                                         <icon color="color(primary)">sort</icon>

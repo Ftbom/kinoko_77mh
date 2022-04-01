@@ -1,4 +1,5 @@
-const baseURL = 'https://www.77mh.in';
+const URL = require('./baseurl');
+const baseURL = URL.baseURL;
 
 class MainController extends Controller {
 
@@ -173,6 +174,9 @@ class MainController extends Controller {
             item.picture = box.querySelector('img').getAttribute('src');
             item.title = item_info[1].textContent;
             item.subtitle = '';
+            item.pictureHeaders = {
+                Referer: baseURL
+            };
             results.push(item);
         }
         return results;

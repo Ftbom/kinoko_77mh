@@ -1,2 +1,3 @@
-# plugin_demo
-A plug-in demo, and you can use this project as a scaffolding to start writing a new plugin.
+# kinoko_77mh
+
+在章节列表处可切换图片服务器

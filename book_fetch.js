@@ -1,4 +1,5 @@
-const baseURL = 'https://www.77mh.in';
+const URL = require('./baseurl');
+const baseURL = URL.baseURL;
 
 function parseData(text, url) {
     const doc = HTMLParser.parse(text);

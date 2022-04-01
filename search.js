@@ -1,4 +1,6 @@
-const Search_baseURL = 'https://so.77mh.in/k.php?k={0}&p={1}';
+const URL = require('./baseurl');
+const baseURL = URL.baseURL;
+const Search_baseURL = URL.Search_baseURL;
 
 class SearchController extends Controller {
 
@@ -148,6 +150,9 @@ class SearchController extends Controller {
                 subtitle: node.querySelector('.author').querySelectorAll('a')[1].textContent,
                 link: node.querySelector('a').getAttribute('href'),
                 picture: node.querySelector('img').getAttribute('src'),
+                pictureHeaders: {
+                    Referer: baseURL
+                },
             });
         }
         return items;

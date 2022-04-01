@@ -1,4 +1,5 @@
-const baseURL = 'https://www.77mh.in';
+const URL = require('./baseurl');
+const baseURL = URL.baseURL;
 
 class IndexController extends Controller {
     load() {

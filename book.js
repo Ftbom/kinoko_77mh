@@ -30,10 +30,15 @@ class BookController extends Controller {
     }
 
     async load(data) {
+        let server_num = 0;
+        if (localStorage['server']) {
+            server_num = parseInt(localStorage['server']);
+        }
         this.data = {
             title: data.title,
             subtitle: data.subtitle,
             summary: data.summary,
+            server: server_num,
             state: data.state,
             picture: data.picture,
             loading: false,
@@ -42,7 +47,6 @@ class BookController extends Controller {
             list: []
         };
         this.selected = [];
-
         this.url = data.link;
         
         /**
@@ -182,6 +186,13 @@ class BookController extends Controller {
         });
     }
 
+    onChangeServer(value) {
+        this.setState(()=>{ //使server状态实时变换
+            this.data.server = parseInt(value);
+            localStorage['server'] = value.toString();
+        });
+    }
+
     async onPressed(idx) {
         if (this.data.editing) {
             this.setState(()=>{
@@ -193,9 +204,11 @@ class BookController extends Controller {
                 }
             });
         } else {
+            let chapter_data = this.data.list;
+            chapter_data[idx].link = this.data.list[idx].link + this.data.server; //传入服务器信息
             await this.openBook({
                 key: this.url,
-                list: this.data.list,
+                list: chapter_data,
                 index: idx,
             });
             this.setState(()=>{
@@ -217,9 +230,11 @@ class BookController extends Controller {
             }
         }
         if (typeof idx === 'number') {
+            let chapter_data = this.data.list;
+            chapter_data[idx].link = this.data.list[idx].link + this.data.server; //传入服务器信息
             await this.openBook({
                 key: this.url,
-                list: this.data.list,
+                list: chapter_data,
                 index: idx,
             });
             this.setState(()=>{
